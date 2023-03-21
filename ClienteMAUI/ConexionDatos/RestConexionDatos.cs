@@ -76,13 +76,55 @@ namespace ClienteMAUI.ConexionDatos
                 Debug.WriteLine($"[ERROR] {e.Message}");
             }
         }
-        public Task UpdatePlatoAsync(Plato plato)
+        public async Task UpdatePlatoAsync(Plato plato)
         {
-            throw new NotImplementedException();
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("[RED] Sin acceso a internet.");
+                return;
+            }
+            try
+            {
+                string platoSer = JsonSerializer.Serialize<Plato>(plato, opcionesJson);
+                StringContent contenido = new StringContent(platoSer, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await httpClient.PutAsync($"{url}/plato/{plato.Id}", contenido);
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("[RED] Se registró correctamente.");
+                }
+                else
+                {
+                    Debug.WriteLine("[RED] Sin respuesta exitosa HTTP (2XX)");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"[ERROR] {e.Message}");
+            }
         }
-        public Task DeletePlatoAsync(int id)
+        public async Task DeletePlatoAsync(int id)
         {
-            throw new NotImplementedException();
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("[RED] Sin acceso a internet.");
+                return;
+            }
+            try
+            {
+                HttpResponseMessage response = await httpClient.DeleteAsync($"{url}/plato/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("[RED] Se registró correctamente.");
+                }
+                else
+                {
+                    Debug.WriteLine("[RED] Sin respuesta exitosa HTTP (2XX)");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"[ERROR] {e.Message}");
+            }
         }
     }
 }

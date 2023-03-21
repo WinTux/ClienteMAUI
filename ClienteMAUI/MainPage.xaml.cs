@@ -1,24 +1,32 @@
-﻿namespace ClienteMAUI;
+﻿//using Android.OS;
+using ClienteMAUI.ConexionDatos;
+using System.Diagnostics;
+//using Java.Lang;
 
+namespace ClienteMAUI;
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly IRestConexionDatos conexionDatos;
 
-	public MainPage()
+    public MainPage(IRestConexionDatos conexionDatos)
 	{
 		InitializeComponent();
+		this.conexionDatos = conexionDatos;
 	}
-
-	private void OnCounterClicked(object sender, EventArgs e)
+	protected async override void OnAppearing()
 	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+		base.OnAppearing();
+		//coleccionPlatosView.ItemsSource = await conexionDatos.GetPlatosAsync();
 	}
+	//Evento Add
+	async void OnAddPlatoClic(object sender, EventArgs e)
+	{
+		Debug.WriteLine("[EVENTO] Se hizo clic en Agregar plato.");
+	}
+    //Evento clic a un plato
+    async void OnElementoCambiado(object sender, SelectionChangedEventArgs e)
+    {
+        Debug.WriteLine("[EVENTO] Se hizo clic en algun plato.");
+    }
 }
 
