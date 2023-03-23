@@ -4,7 +4,7 @@ using ClienteMAUI.Models;
 using System.Diagnostics;
 
 namespace ClienteMAUI.Pages;
-[QueryProperty(nameof(Plato), "Plato")]
+[QueryProperty(nameof(plato),"Plato")]
 public partial class GestionPlatosPage : ContentPage
 {
     private readonly IRestConexionDatos conexionDatos;
@@ -35,16 +35,16 @@ public partial class GestionPlatosPage : ContentPage
 		if (_esNuevo)
 		{
 			Debug.WriteLine("[REGISTRO] Agregando un nuevo plato");
-			await conexionDatos.AddPlatoAsync(_plato);
+			await conexionDatos.AddPlatoAsync(plato);
 		}
 		else {
             Debug.WriteLine("[REGISTRO] Modificando un plato");
-            await conexionDatos.UpdatePlatoAsync(_plato);
+            await conexionDatos.UpdatePlatoAsync(plato);
         }
         await Shell.Current.GoToAsync("..");
     }
 	async void OnEliminarClic(object sender, EventArgs e) {
-		await conexionDatos.DeletePlatoAsync(_plato.Id);
+		await conexionDatos.DeletePlatoAsync(plato.Id);
         await Shell.Current.GoToAsync("..");
     }
 }

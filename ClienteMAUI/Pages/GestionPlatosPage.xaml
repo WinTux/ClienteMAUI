@@ -14,7 +14,7 @@
         <TableView Intent="Data" Grid.Row="0" Grid.ColumnSpan="3">
             <TableRoot>
                 <TableSection Title="Tarea a realizar">
-                    <EntryCell Text="{Binding Path=Plato.Nombre}" Placeholder="Introduzca el nombre de un plato."/>
+                    <EntryCell Text="{Binding Path=plato.Nombre}" Placeholder="Introduzca el nombre de un plato."/>
                 </TableSection>
             </TableRoot>
         </TableView>
