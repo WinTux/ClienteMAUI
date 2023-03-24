@@ -18,9 +18,9 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-        <Button Text="Guardar" Clicked="OnGuardarClic" Grid.Row="1" Grid.Column="0"/>
-        <Button Text="Eliminar" Clicked="OnEliminarClic" Grid.Row="1" Grid.Column="1"/>
-        <Button Text="Cancelar" Clicked="OnCancelarClic" Grid.Row="1" Grid.Column="2"/>
+        <Button Text="Guardar" Clicked="OnGuardarClic" Grid.Row="1" Grid.Column="0" Margin="15,5"/>
+        <Button Text="Eliminar" Clicked="OnEliminarClic" Grid.Row="1" Grid.Column="1" Margin="0,5"/>
+        <Button Text="Cancelar" Clicked="OnCancelarClic" Grid.Row="1" Grid.Column="2" Margin="15,5"/>
     </Grid>
     <!-- VerticalStackLayout Margin="15"> -->
     <!-- <Label Text="Acciones a realizar"/> -->
